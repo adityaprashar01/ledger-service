@@ -23,7 +23,6 @@ import (
 // @Success 200 {object} models.Customer
 // @Failure 400 {object} map[string]string
 // @Router /customers [post]
-
 func CreateCustomer(c *gin.Context) {
 	var input struct {
 		Name           string  `json:"name"`
@@ -63,7 +62,6 @@ func CreateCustomer(c *gin.Context) {
 // @Success 200 {object} map[string]interface{}
 // @Failure 404 {object} map[string]string
 // @Router /customers/{customer_id}/balance [get]
-
 func GetCustomerBalance(c *gin.Context) {
 	customerID := c.Param("customer_id")
 	objID, _ := primitive.ObjectIDFromHex(customerID)

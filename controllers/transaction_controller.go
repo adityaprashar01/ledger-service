@@ -26,7 +26,6 @@ import (
 // @Success 200 {object} gin.H
 // @Failure 400 {object} gin.H
 // @Router /transactions [post]
-
 func CreateTransaction(c *gin.Context) {
 	var txn models.Transaction
 	if err := c.ShouldBindJSON(&txn); err != nil {
@@ -111,7 +110,6 @@ func CreateTransaction(c *gin.Context) {
 // @Failure 400 {object} gin.H
 // @Failure 500 {object} gin.H
 // @Router /customers/{customer_id}/transactions [get]
-
 func GetTransactionHistory(c *gin.Context) {
 	customerID := c.Param("customer_id")
 	objID, err := primitive.ObjectIDFromHex(customerID)
