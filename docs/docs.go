@@ -27,8 +27,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "Backend service to manage customer ledger with transaction support.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	// LeftDelim:        "{{",
-	// RightDelim:       "}}",
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {
