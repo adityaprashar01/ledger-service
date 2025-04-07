@@ -4,6 +4,7 @@ import (
 	"ledger-service/database"
 	"ledger-service/routes"
 	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -12,7 +13,7 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("No .env file found, continuing with system environment variables")
 	}
 
 	database.ConnectDB()
@@ -20,5 +21,10 @@ func main() {
 	r := gin.Default()
 	routes.SetupRoutes(r)
 
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	r.Run(":" + port)
 }
