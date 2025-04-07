@@ -23,8 +23,8 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param transaction body models.Transaction true "Transaction Info"
-// @Success 200 {object} gin.H
-// @Failure 400 {object} gin.H
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
 // @Router /transactions [post]
 func CreateTransaction(c *gin.Context) {
 	var txn models.Transaction
@@ -107,8 +107,8 @@ func CreateTransaction(c *gin.Context) {
 // @Param page query int false "Page number"
 // @Param limit query int false "Page size"
 // @Success 200 {array} models.Transaction
-// @Failure 400 {object} gin.H
-// @Failure 500 {object} gin.H
+// @Failure 400 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
 // @Router /customers/{customer_id}/transactions [get]
 func GetTransactionHistory(c *gin.Context) {
 	customerID := c.Param("customer_id")
