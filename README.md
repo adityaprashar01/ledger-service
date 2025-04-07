@@ -75,35 +75,108 @@ It will start on `http://localhost:8080`
 
 Use tools like **Postman** or **cURL**.
 
-### Create Customer
+
+## 📄 API Documentation
+
+All endpoints accept and return **JSON**.
+
+### 1. Create Customer
 
 ```http
 POST /customers
-Content-Type: application/json
+```
 
+**Request Body:**
+
+```json
 {
   "name": "John Doe",
-  "initial_balance": 1000
+  "initial_balance": 5000
 }
 ```
 
-### Get Balance
+**Response:**
 
-```http
-GET /customers/{customer_id}/balance
+```json
+{
+  "_id": "64f1234...",
+  "name": "John Doe",
+  "balance": 5000
+}
 ```
 
-### Add Transaction
+---
+
+### 2. Get Customer Balance
+
+```http
+GET /customers/:customer_id/balance
+```
+
+**Response:**
+
+```json
+{
+  "customer_id": "64f1234...",
+  "balance": 5000
+}
+```
+
+---
+
+### 3. Create Transaction
 
 ```http
 POST /transactions
-Content-Type: application/json
+```
 
+**Request Body:**
+
+```json
 {
-  "customer_id": "<customer_id>",
-  "amount": 500,
-  "type": "credit"
+  "customer_id": "64f1234...",
+  "amount": 1000,
+  "type": "credit" // or "debit"
 }
+```
+
+**Response:**
+
+```json
+{
+  "transaction_id": "...",
+  "customer_id": "...",
+  "amount": 1000,
+  "type": "credit",
+  "timestamp": "..."
+}
+```
+
+---
+
+### 4. Get Transaction History ✅
+
+```http
+GET /customers/:customer_id/transactions
+```
+
+**Response:**
+
+```json
+[
+  {
+    "transaction_id": "...",
+    "amount": 1000,
+    "type": "credit",
+    "timestamp": "..."
+  },
+  {
+    "transaction_id": "...",
+    "amount": 500,
+    "type": "debit",
+    "timestamp": "..."
+  }
+]
 ```
 
 ---
