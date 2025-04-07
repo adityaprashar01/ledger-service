@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ledger-service
+    env: go
+    repo: https://github.com/adityaprashar01/ledger-service
+    branch: main
+    buildCommand: go build -o main .
+    startCommand: ./main
+    envVars:
+      - key: PORT
+        value: 8000
+      - key: MONGO_URI
+        value: mongodb+srv://adityaprashar03:aditya123456@cluster0.g0oiv4e.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
