@@ -1,0 +1,11 @@
+basePath: /
+host: ledger-service.onrender.com
+info:
+  contact: {}
+  description: Backend service to manage customer ledger with transaction support.
+  title: Ledger Service API
+  version: "1.0"
+paths: {}
+schemes:
+- https
+swagger: "2.0"

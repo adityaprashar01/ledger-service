@@ -16,6 +16,17 @@ import (
 	"ledger-service/models"
 )
 
+// CreateTransaction godoc
+// @Summary Create a new transaction
+// @Description Processes a debit or credit transaction for a customer
+// @Tags Transactions
+// @Accept  json
+// @Produce  json
+// @Param transaction body models.Transaction true "Transaction Info"
+// @Success 200 {object} gin.H
+// @Failure 400 {object} gin.H
+// @Router /transactions [post]
+
 func CreateTransaction(c *gin.Context) {
 	var txn models.Transaction
 	if err := c.ShouldBindJSON(&txn); err != nil {
@@ -87,6 +98,20 @@ func CreateTransaction(c *gin.Context) {
 		"balance":        result,
 	})
 }
+
+// GetTransactionHistory godoc
+// @Summary Get transaction history
+// @Description Retrieves all transactions for a given customer with pagination
+// @Tags Transactions
+// @Produce  json
+// @Param customer_id path string true "Customer ID"
+// @Param page query int false "Page number"
+// @Param limit query int false "Page size"
+// @Success 200 {array} models.Transaction
+// @Failure 400 {object} gin.H
+// @Failure 500 {object} gin.H
+// @Router /customers/{customer_id}/transactions [get]
+
 func GetTransactionHistory(c *gin.Context) {
 	customerID := c.Param("customer_id")
 	objID, err := primitive.ObjectIDFromHex(customerID)
