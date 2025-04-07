@@ -12,7 +12,7 @@ A backend service to manage customer accounts and transactions, built with **Gol
 - Create customer accounts
 - Add transactions (credit/debit)
 - Get customer balance
-- View transaction history
+- View transaction history (With pagination)
 - RESTful API with OpenAPI (Swagger) documentation
 - Hosted on Render with MongoDB Atlas
 
@@ -154,32 +154,61 @@ POST /transactions
 
 ---
 
-### 4. Get Transaction History ✅
+### 4. Get Transaction History 
+
+Retrieve the transaction history for a specific customer.
 
 ```http
 GET /customers/:customer_id/transactions
 ```
 
-**Response:**
+**Path Parameter:**
 
-```json
-[
-  {
-    "transaction_id": "...",
-    "amount": 1000,
-    "type": "credit",
-    "timestamp": "..."
-  },
-  {
-    "transaction_id": "...",
-    "amount": 500,
-    "type": "debit",
-    "timestamp": "..."
-  }
-]
-```
+- `customer_id` (string) – The ID of the customer
+
+**Optional Query Parameters:**
+
+- `page` (integer) – Page number (default: 1)
+- `limit` (integer) – Number of transactions per page (default: 10)
 
 ---
+
+### 🔄 Example Request (Paginated)
+
+```http
+GET /customers/6613a1234abcde23456789ff/transactions?page=1&limit=2
+```
+
+### Response:
+
+```json
+{
+  "page": 1,
+  "limit": 2,
+  "total": 4,
+  "transactions": [
+    {
+      "transaction_id": "6613aabcde123456789fff01",
+      "amount": 1000,
+      "type": "credit",
+      "timestamp": "2025-04-01T12:34:56Z"
+    },
+    {
+      "transaction_id": "6613aabcde123456789fff02",
+      "amount": 500,
+      "type": "debit",
+      "timestamp": "2025-04-02T09:30:21Z"
+    }
+  ]
+}
+```
+
+### Status Codes:
+
+- `200 OK` – Success
+- `404 Not Found` – Customer not found
+- `500 Internal Server Error` – Server-side error
+
 
 ## 📘 Swagger API Documentation
 
