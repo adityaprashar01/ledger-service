@@ -2,7 +2,7 @@
 
 A backend service to manage customer accounts and transactions, built with **Golang**, **MongoDB Atlas**, and **Gin** framework.
 
-🔗 **Live Demo**: [https://ledger-service.onrender.com](https://ledger-service.onrender.com)  
+🔗 **Live Demo(BaseUrl)**: [https://ledger-service.onrender.com](https://ledger-service.onrender.com)  
 📘 **API Docs (Swagger UI)**: [https://ledger-service.onrender.com/swagger/index.html](https://ledger-service.onrender.com/swagger/index.html)
 
 ---
